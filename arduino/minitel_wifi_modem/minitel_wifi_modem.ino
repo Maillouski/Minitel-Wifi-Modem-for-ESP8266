@@ -119,7 +119,7 @@ SerialConfig mode = SERIAL_8N1;
 byte serialspeed; //1200 baud
 
 // Network settings
-String ssid="POLICE SAINT-LAMBERT", password="wwa-ab17";
+String ssid="", password="";
 int tcpServerPort = LISTEN_PORT;
 
 // Websocket client
