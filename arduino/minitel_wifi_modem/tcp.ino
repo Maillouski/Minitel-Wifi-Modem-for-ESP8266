@@ -24,10 +24,10 @@ void terminalToTcp() {
             plusTime = millis();
         }
 
-        // Check for special key sequence 0x1359 (0x13 followed by 0x59)
-        if (lastKey == 0x13 && key == 0x59) {
-            //Serial.println("Special key sequence 0x1359 detected!"); // Log or handle the special key sequence
-            //Serial.println("2");delay(500);
+        // Check for special key sequence 0x1349 (0x13 followed by 0x49) // SHIT+CONNEXION/FIN
+        if (lastKey == 0x13 && key == 0x49) {
+            // Si la séquence spéciale '\x13I' est détectée :
+            // Effectuer les actions nécessaires, comme la déconnexion
             hangUp();
         }
 
@@ -58,67 +58,6 @@ void terminalToTcp() {
     }
 }
 
-void terminalToTcp_old(){
-    static uint8_t lastByte = 0; // Persist last byte between calls
-    bool specialKeySequenceDetected = false; // Flag to detect special sequence
-
-    if (Serial.available()) {
-        led_on();
-
-        int max_buf_size;
-        if (telnet == true)
-            max_buf_size = TX_BUF_SIZE / 2;
-        else
-            max_buf_size = TX_BUF_SIZE;
-
-        // Read from serial, the amount available up to the maximum size of the buffer
-        size_t len = std::min(Serial.available(), max_buf_size);
-        Serial.readBytes(txBuf, len);
-
-        // Process each byte for '+++' sequence and special two-byte sequence
-        for (int i = 0; i < len; i++) {
-            // Check for '+++'
-            if (txBuf[i] == '+') {
-                plusCount++;
-            } else {
-                plusCount = 0;
-            }
-            if (plusCount >= 3) {
-                plusTime = millis();
-            }
-
-            // Check for special key sequence 0x1359
-            if (lastByte == 0x13 && txBuf[i] == 0x59) {
-                //hangUp();
-            }
-
-            // Update lastByte to the current byte for the next iteration
-            lastByte = txBuf[i];
-        }
-
-        // Handle telnet specific escaping
-        if (telnet == true) {
-            for (int i = len - 1; i >= 0; i--) {
-                if (txBuf[i] == 0xff) {
-                    for (int j = TX_BUF_SIZE - 1; j > i; j--) {
-                        txBuf[j] = txBuf[j - 1];
-                    }
-                    len++;
-                }
-            }
-        }
-        
-        // Write the buffer to PPP or TCP finally
-        if (ppp) {
-            pppos_input(ppp, txBuf, len);
-        } else {
-            tcpClient.write(txBuf, len);
-            Serial.flush();
-        }
-        yield();
-    }
-}
-
 void terminalToWebSocket() {
     uint32_t key = getKeyCode(false);
     uint8_t lastKey = 0;
@@ -135,9 +74,10 @@ void terminalToWebSocket() {
             plusTime = millis();
         }
 
-        // Check for special key sequence 0x1359 (0x13 followed by 0x59)
-        if (lastKey == 0x13 && key == 0x59) {
-            //Serial.println("Special key sequence 0x1359 detected!"); // Log or handle the special key sequence
+        // Check for special key sequence 0x1349 (0x13 followed by 0x49) // SHIT+CONNEXION/FIN
+        if (lastKey == 0x13 && key == 0x49) {
+            // Si la séquence spéciale '\x13I' est détectée :
+            // Effectuer les actions nécessaires, comme la déconnexion
             hangUp();
         }
 
