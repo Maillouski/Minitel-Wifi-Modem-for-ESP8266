@@ -5,6 +5,8 @@
  
  See https://github.com/ssshake/vintage-computer-wifi-modem
 
+ MAX3232 Adapter board based on Richard Bettridge desing.
+
  Thanks to Éric Sérandour for the Minitel1B_Hard library (https://github.com/eserandour/Minitel1B_Hard)
  
  Thank to Louis H. (https://github.com/iodeo) and Hervé Warin (https://github.com/64rulez) for their help!
