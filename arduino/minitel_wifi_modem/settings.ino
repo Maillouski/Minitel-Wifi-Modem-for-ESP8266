@@ -182,9 +182,9 @@ void defaultEEPROM() {
   EEPROM.write(QUIET_MODE_ADDRESS, 0x00);
 
   setEEPROM("ws://go.minipavi.fr:8182", speedDialAddresses[0], 50);
-  setEEPROM("ws://mntl.joher.com:2018/?echo", speedDialAddresses[3], 50);
-  setEEPROM("ws://3611.re/ws", speedDialAddresses[2], 50);
   setEEPROM("ws://teletel.org:9001", speedDialAddresses[1], 50);
+  setEEPROM("ws://3611.re/ws", speedDialAddresses[2], 50);
+  setEEPROM("ws://mntl.joher.com:2018/?echo", speedDialAddresses[3], 50);
   setEEPROM("ws://minitel.3614teaser.fr:8080/ws", speedDialAddresses[4], 50);
   setEEPROM("wss://wss.3615.live:9991/?echo", speedDialAddresses[5], 50);
   setEEPROM("glasstty.com:6502", speedDialAddresses[6], 50);
