@@ -189,7 +189,7 @@ void dialOut(String upCmd) {
       if (wsProtocol == "ws") {
         yield(); 
         Serial.print("DIALING ");Serial.println(host);
-        yield(); 
+        yield();
         webSocket->begin(host.c_str(), port.toInt(), path);
         yield(); 
       }
@@ -202,6 +202,7 @@ void dialOut(String upCmd) {
       }
       yield(); 
       webSocket->onEvent(webSocketEvent);
+      pageMode(); // put minitel back into page mode
     }
     else
     {
@@ -227,10 +228,11 @@ void dialOut(String upCmd) {
         firstconnect = true;
         if(host != "glasstty.com" && host != "bbs.retrocampus.com") // we assume a normal telnet connexion not to a Minitel service.
         {
-          setModeMixte(); 
+          setModeMixte();
         }
         else
         {
+          pageMode(); // put minitel back into page mode
           sendConnexionFinSequence(); // for the TELSTAR Telnet servers.
         }
       } 

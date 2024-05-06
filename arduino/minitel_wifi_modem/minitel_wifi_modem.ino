@@ -220,19 +220,14 @@ void waitForSpace() {
 
 void welcome() {
   
+  scrollMode();
   Serial.println("");
-  Serial.println("Minitel Speed Dials");
+  Serial.println("Speed Dials");
   Serial.println("ATDS0 MiniPAVI (French)");
-  Serial.println("ATDS1 3615 TELETEL (French)");
-  yield();
-  Serial.println("ATDS2 3611 Phone Directory (French)");
-  Serial.println("ATDS3 3614 HACKER (French)");
-  Serial.println("ATDS4 3614 TEASER (French)");
-  Serial.println("ATDS5 3615 Service Medical (French)");
-  yield();
-  Serial.println("ATDS6 TELSTAR Server 1 (English)");
-  Serial.println("ATDS7 TELSTAR Server 2 (English)");
-  Serial.println("ATDS8 Retro Campus BBS (English)");
+  Serial.println("ATDS1 TELETEL (French)");
+  Serial.println("ATDS2 TELSTAR Server 1 (English)");
+  Serial.println("ATDS3 TELSTAR Server 2 (English)");
+  Serial.println("ATDS4 Retro Campus BBS (English)");
   sendResult(R_OK);
   yield(); 
 }

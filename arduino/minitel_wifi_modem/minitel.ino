@@ -1,3 +1,10 @@
+/******************************************
+* Code réinterprété ou carrément récupéré de la librarie Minitel1B_Hard
+* d'Éric Sérandour (https://github.com/eserandour/Minitel1B_Hard)
+*
+*/
+
+
 unsigned long getKeyCode(bool unicode) {
   // Renvoie le code brut émis par le clavier (unicode = false)
   // ou sa conversion unicode si applicable (unicode = true, choix par défaut)
@@ -353,6 +360,35 @@ void resetMinitel() {  // Voir p.145
     Serial.read();
   }
 }
+
+void pageMode() {
+  // Commande
+  Serial.write(ESC);
+  Serial.write(PRO2);
+  Serial.write(STOP); 
+  Serial.write(ROULEAU);  // 0x43
+  delay(500);
+  while (!Serial);yield();
+  while(Serial.available() > 0)
+  {
+    Serial.read();
+  }
+}
+
+void scrollMode() {
+  // Commande
+  Serial.write(ESC);
+  Serial.write(PRO2);
+  Serial.write(START);    // 0x69
+  Serial.write(ROULEAU);  // 0x43
+  delay(500);
+  while (!Serial);yield();
+  while(Serial.available() > 0)
+  {
+    Serial.read();
+  }
+}
+
 void testMode(){
   // Mettre le clavier en mode etendu, obligatoire ?
   Serial.write(ESC);

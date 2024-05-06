@@ -182,15 +182,14 @@ void defaultEEPROM() {
   EEPROM.write(QUIET_MODE_ADDRESS, 0x00);
 
   setEEPROM("ws://go.minipavi.fr:8182", speedDialAddresses[0], 50);
-  setEEPROM("ws://teletel.org:9001", speedDialAddresses[1], 50);
-  setEEPROM("ws://3611.re/ws", speedDialAddresses[2], 50);
-  setEEPROM("ws://mntl.joher.com:2018/?echo", speedDialAddresses[3], 50);
-  setEEPROM("ws://minitel.3614teaser.fr:8080/ws", speedDialAddresses[4], 50);
-  setEEPROM("wss://wss.3615.live:9991/?echo", speedDialAddresses[5], 50);
-  setEEPROM("glasstty.com:6502", speedDialAddresses[6], 50);
-  setEEPROM("glasstty.com:6503", speedDialAddresses[7], 50);
-  setEEPROM("bbs.retrocampus.com:23", speedDialAddresses[8], 50);
-  setEEPROM("", speedDialAddresses[9], 50);
+  setEEPROM("ws://home.teletel.org:9001", speedDialAddresses[1], 50);
+  setEEPROM("glasstty.com:6502", speedDialAddresses[2], 50);
+  setEEPROM("glasstty.com:6503", speedDialAddresses[3], 50);
+  setEEPROM("bbs.retrocampus.com:23", speedDialAddresses[4], 50);
+  
+  for (int i = 5; i <= 9; i++){
+    setEEPROM("", speedDialAddresses[i],50);
+  }
 
   setEEPROM("SORRY, SYSTEM IS CURRENTLY BUSY. PLEASE TRY AGAIN LATER.", BUSY_MSG_ADDRESS, BUSY_MSG_LEN);
   EEPROM.commit();
